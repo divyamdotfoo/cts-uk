@@ -28,6 +28,8 @@ body {
 
 @layer base {
   :root {
+    --text-primary: #125782;
+    --text-secondary: #000;
     --background: 0 0% 100%;
     --foreground: 0 0% 3.9%;
     --card: 0 0% 100%;
@@ -88,5 +90,9 @@ body {
   }
   body {
     @apply bg-background text-foreground;
+  }
+
+  *::selection {
+    background-color: #f8eac7;
   }
 }
