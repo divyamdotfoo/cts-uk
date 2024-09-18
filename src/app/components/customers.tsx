@@ -121,7 +121,10 @@ export function Customers() {
           className=" flex items-start gap-4 flex-nowrap pb-8"
         >
           {reviews.slice(0, 6).map((r) => (
-            <div className=" w-80 shrink-0 px-8 py-5 bg-[#fffffffa] rounded-lg shadow-sm">
+            <div
+              key={r.title}
+              className=" w-80 shrink-0 px-8 py-5 bg-[#fffffffa] rounded-lg shadow-sm"
+            >
               <p className=" pb-1 text-2xl font-semibold leading-[1.3]">
                 {r.title}
               </p>
@@ -134,7 +137,10 @@ export function Customers() {
           className="flex items-start gap-4 flex-nowrap"
         >
           {reviews.slice(6).map((r) => (
-            <div className=" w-80 shrink-0 px-8 py-5 bg-[#fffffffa] rounded-lg shadow-sm">
+            <div
+              key={r.title}
+              className=" w-80 shrink-0 px-8 py-5 bg-[#fffffffa] rounded-lg shadow-sm"
+            >
               <p className=" pb-1 text-2xl font-semibold leading-[1.3]">
                 {r.title}
               </p>
