@@ -108,7 +108,7 @@ export function Customers() {
   const x2 = useTransform(scrollYProgress, [0.3, 1], [-1000, 0]);
 
   return (
-    <div className=" w-full bg-text-primary text-white py-8 mb-[1000px]">
+    <div className=" w-full bg-text-primary text-white py-8">
       <p className="flex items-center gap-1 text-center text-4xl font-bold justify-center">
         Hear from our delighted users{" "}
         <span>

@@ -1,4 +1,14 @@
-import { Clock, Globe, Lock, Smartphone, Wallet, Zap } from "lucide-react";
+"use client";
+import { motion } from "framer-motion";
+import {
+  Clock,
+  Globe,
+  Lock,
+  Smartphone,
+  Wallet,
+  Zap,
+  LucideIcon,
+} from "lucide-react";
 import {
   Carousel,
   CarouselContent,
@@ -6,78 +16,123 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { useMemo, useState } from "react";
+import { cn } from "@/lib/utils";
 export function WHyChooseUs() {
+  const features = useMemo(
+    () => [
+      {
+        title: "Instant Activation",
+        icon: Zap,
+        brief: ["Stay Connected", "Go with ease"],
+        detail:
+          "We understand your time is valuable. That's why we've made our activation process lightning-fast, allowing you to connect and start using our services in mere minutes.",
+      },
+      {
+        title: "Secure Connection",
+        icon: Lock,
+        brief: ["Your Data is Safe", "with Us"],
+        detail:
+          "Your privacy is our top priority. We employ state-of-the-art encryption to ensure that your data remains protected at all times, giving you peace of mind while you browse.",
+      },
+      {
+        title: "24/7 Support",
+        icon: Clock,
+        brief: ["Assistance Anytime", "Anywhere"],
+        detail:
+          "We're always here for you. Our dedicated support team is available round the clock to assist with any questions or issues you might have, ensuring you're never left in the dark.",
+      },
+      {
+        title: "Easy Setup",
+        icon: Smartphone,
+        brief: ["Quick and Simple", "Installation"],
+        detail:
+          "Getting started with our service is a breeze. We've streamlined our setup process so you can be up and running in no time, without any technical hassles.",
+      },
+      {
+        title: "Affordable Rates",
+        icon: Wallet,
+        brief: ["Best Value for", "Your Money"],
+        detail:
+          "We believe in providing top-notch service without breaking the bank. Our competitive rates ensure you get the best value for your money, with no hidden fees or surprises.",
+      },
+      {
+        title: "Global Coverage",
+        icon: Globe,
+        brief: ["Connect Anywhere", "Across the World"],
+        detail:
+          "Stay connected wherever life takes you. Our extensive global network ensures you have reliable service across the world, keeping you in touch with what matters most.",
+      },
+    ],
+    []
+  );
+
   return (
-    <div className=" pt-12">
-      <p className=" text-4xl font-bold text-text-primary text-center">
+    <div className="pt-12">
+      <p className="text-4xl font-bold text-text-primary text-center">
         Why choose us?
       </p>
       <Carousel
-        className=" max-w-5xl py-12 text-gray-700 mx-auto"
+        className="max-w-5xl py-12 text-gray-700 mx-auto"
         opts={{
           loop: true,
           align: "center",
         }}
       >
         <CarouselContent className="text-gray-700">
-          <CarouselItem className=" basis-[27%]">
-            <div className=" flex flex-col items-center gap-2 border border-gray-300 shadow-sm py-6 rounded-lg">
-              <Zap className=" w-14 h-14 text-text-primary stroke-[0.8] block" />
-              <p className=" text-2xl font-medium">Instant Activation</p>
-              <p className=" text-center text-gray-800 ">
-                Stay Connected on the <br /> Go with Ease
-              </p>
-            </div>
-          </CarouselItem>
-          <CarouselItem className=" basis-[27%]">
-            <div className="flex flex-col items-center gap-2 border border-gray-300 shadow-sm py-6 rounded-lg">
-              <Lock className="w-14 h-14 text-text-primary stroke-[0.8]" />
-              <p className="text-2xl font-medium">Secure Connection</p>
-              <p className="text-center text-gray-800">
-                Your Data is Safe <br /> with Us
-              </p>
-            </div>
-          </CarouselItem>
-          <CarouselItem className=" basis-[27%]">
-            <div className="flex flex-col items-center gap-2 border border-gray-300 shadow-sm py-6 rounded-lg">
-              <Clock className="w-14 h-14 text-text-primary stroke-[0.8]" />
-              <p className="text-2xl font-medium">24/7 Support</p>
-              <p className="text-center text-gray-800">
-                Assistance Anytime <br /> Anywhere
-              </p>
-            </div>
-          </CarouselItem>
-          <CarouselItem className=" basis-[27%]">
-            <div className="flex flex-col items-center gap-2 border border-gray-300 shadow-sm py-6 rounded-lg">
-              <Smartphone className="w-14 h-14 text-text-primary stroke-[0.8]" />
-              <p className="text-2xl font-medium">Easy Setup</p>
-              <p className="text-center text-gray-800">
-                Quick and Simple <br /> Installation
-              </p>
-            </div>
-          </CarouselItem>
-          <CarouselItem className=" basis-[27%]">
-            <div className="flex flex-col items-center gap-2 border border-gray-300 shadow-sm py-6 rounded-lg">
-              <Wallet className="w-14 h-14 text-text-primary stroke-[0.8]" />
-              <p className="text-2xl font-medium">Affordable Rates</p>
-              <p className="text-center text-gray-800">
-                Best Value for <br /> Your Money
-              </p>
-            </div>
-          </CarouselItem>
-          <CarouselItem className=" basis-[27%]">
-            <div className="flex flex-col items-center gap-2 border border-gray-300 shadow-sm py-6 rounded-lg">
-              <Globe className="w-14 h-14 text-text-primary stroke-[0.8]" />
-              <p className="text-2xl font-medium">Global Coverage</p>
-              <p className="text-center text-gray-800">
-                Connect Anywhere <br /> Across the World
-              </p>
-            </div>
-          </CarouselItem>
+          {features.map((feature, index) => (
+            <FeatureCard
+              key={index}
+              icon={feature.icon}
+              title={feature.title}
+              brief={feature.brief}
+              detail={feature.detail}
+            />
+          ))}
         </CarouselContent>
         <CarouselPrevious />
         <CarouselNext />
       </Carousel>
     </div>
+  );
+}
+function FeatureCard({
+  icon: Icon,
+  brief,
+  detail,
+  title,
+}: {
+  icon: LucideIcon;
+  title: string;
+  brief: string[];
+  detail?: string;
+}) {
+  const [show, setShow] = useState(false);
+
+  return (
+    <CarouselItem className=" basis-[27%]">
+      <div
+        onMouseOver={() => setShow(true)}
+        onMouseEnter={() => setShow(true)}
+        onMouseLeave={() => setShow(false)}
+        className=" relative flex flex-col items-center gap-2 border border-gray-300 shadow-sm py-6 rounded-lg"
+      >
+        <Icon className="w-14 h-14 text-text-primary stroke-[0.8]" />
+        <p className="text-2xl font-medium">{title}</p>
+        <p className="text-center text-gray-800">
+          {brief[0]} <br /> {brief[1]}
+        </p>
+        <motion.p
+          className={cn(
+            "bottom-0 text-pretty z-20 text-sm absolute left-0 right-0 rounded-t-lg bg-background-yellow text-text-primary font-medium",
+            show && "p-4"
+          )}
+          initial={{ height: 0 }}
+          animate={{ height: show ? "75%" : 0 }}
+        >
+          {detail}
+        </motion.p>
+      </div>
+    </CarouselItem>
   );
 }

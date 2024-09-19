@@ -30,6 +30,7 @@ body {
   :root {
     --text-primary: #125782;
     --text-secondary: #000;
+    --background-yellow: #f9f4e7;
     --background: 0 0% 100%;
     --foreground: 0 0% 3.9%;
     --card: 0 0% 100%;
