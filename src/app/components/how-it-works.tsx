@@ -26,8 +26,8 @@ export function HowItWorks() {
       </p>
       <p className=" text-3xl font-bold text-center py-4">How does it work?</p>
       <p className=" max-w-96 text-gray-700 text-sm font-medium mx-auto text-center">
-        Picture this: You've just landed in the UK, no SIM cards to fumble with.
-        A quick scan, and like magic, your phone is connected.
+        Picture this: You&apos;ve just landed in the UK, no SIM cards to fumble
+        with. A quick scan, and like magic, your phone is connected.
       </p>
       <div
         ref={stepsContainerRef}
