@@ -41,7 +41,7 @@ export function HeroSection({ children }: { children?: React.ReactNode }) {
           </p>
           <p className=" text-gray-700 font-semibold pl-1 tracking-wider pr-16 pt-6">
             Enjoy reliable, high-speed data with our eSIM for hassle-free
-            activation and seamless connectivity across the US without physical
+            activation and seamless connectivity across the UK without physical
             SIM cards.
           </p>
           <div className=" flex items-center pt-3 pl-1">
@@ -82,9 +82,21 @@ export function HeroSection({ children }: { children?: React.ReactNode }) {
 function HeroChatMessage() {
   const chats = useTypingEffect(
     [
-      "Just went 5G in London⚡",
-      "No SIM swap? 😯",
-      "Lol, who does that anymore?😂",
+      [
+        "Just went 5G in London⚡",
+        "No SIM swap? 😯",
+        "Lol, who does that anymore?😂",
+      ],
+      [
+        "Working remotely in Manchester?",
+        "Zoom calls without a hitch.",
+        "eSIM keeps me connected!",
+      ],
+      [
+        "No roaming fees, just fast UK data.",
+        "How's the coverage?",
+        "Full bars, no issues!",
+      ],
     ],
     50,
     true
@@ -119,34 +131,48 @@ function HeroChatMessage() {
 }
 
 export const useTypingEffect = (
-  chats: string[],
+  chats: string[][],
   duration: number,
   isTypeByLetter = false
 ) => {
+  const [activeChats, setActiveChats] = useState(-1);
   const [active, setActive] = useState(-1);
   const [currentPosition, setCurrentPosition] = useState(0);
-  const items = chats[active]
-    ? isTypeByLetter
-      ? chats[active].split("")
-      : chats[active].split(" ")
-    : [];
+
+  const items =
+    chats[activeChats] && chats[activeChats][active]
+      ? chats[activeChats][active].split("")
+      : [];
 
   useEffect(() => {
     setTimeout(() => {
+      setActiveChats(0);
       setActive(0);
     }, 150);
   }, []);
 
   useEffect(() => {
-    if (active === -1 || active >= chats.length) return;
+    if (active === -1 || activeChats === -1) return;
 
+    if (active >= chats[activeChats].length) {
+      console.log("inside");
+      setActiveChats((p) => (p + 1) % chats.length);
+      setActive(0);
+
+      return;
+    }
     if (currentPosition >= items.length) {
-      if (active + 1 < chats.length) {
+      if (active === chats[activeChats].length - 1) {
         setTimeout(() => {
           setActive((p) => p + 1);
           setCurrentPosition(0);
-        }, 200);
+        }, 1000);
+        return;
       }
+      setTimeout(() => {
+        setActive((p) => p + 1);
+        setCurrentPosition(0);
+      }, 400);
       return;
     }
 
@@ -161,7 +187,7 @@ export const useTypingEffect = (
 
   if (active === -1) return [];
   return [
-    ...chats.slice(0, active),
+    ...chats[activeChats].slice(0, active),
     items.slice(0, currentPosition).join(isTypeByLetter ? "" : " "),
   ];
 };
