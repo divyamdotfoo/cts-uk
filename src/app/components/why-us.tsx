@@ -70,12 +70,12 @@ export function WHyChooseUs() {
   );
 
   return (
-    <div className="pt-12">
+    <div className="pt-12 max-w-5xl mx-auto">
       <p className="text-4xl font-bold text-text-primary text-center">
         Why choose us?
       </p>
       <Carousel
-        className="max-w-5xl py-12 text-gray-700 mx-auto"
+        className=" w-full py-12 text-gray-700"
         opts={{
           loop: true,
           align: "center",
@@ -112,7 +112,7 @@ function FeatureCard({
   const [show, setShow] = useState(false);
 
   return (
-    <CarouselItem className=" basis-[27%]">
+    <CarouselItem className=" xl:basis-[27%]">
       <div
         onMouseOver={() => setShow(true)}
         onMouseEnter={() => setShow(true)}

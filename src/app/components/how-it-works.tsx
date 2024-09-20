@@ -31,7 +31,7 @@ export function HowItWorks() {
     []
   );
   return (
-    <div className=" bg-background-yellow w-full py-10 text-black mb-[500px]">
+    <div className=" bg-background-yellow w-full py-10 text-black">
       <p className=" text-center text-text-primary font-semibold text-xs">
         Step-By-Step Guide
       </p>
