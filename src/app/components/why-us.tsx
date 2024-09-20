@@ -4,10 +4,10 @@ import {
   Clock,
   Globe,
   Lock,
-  Smartphone,
   Wallet,
   Zap,
   LucideIcon,
+  Infinity,
 } from "lucide-react";
 import {
   Carousel,
@@ -22,13 +22,6 @@ export function WHyChooseUs() {
   const features = useMemo(
     () => [
       {
-        title: "Instant Activation",
-        icon: Zap,
-        brief: ["Stay Connected", "Go with ease"],
-        detail:
-          "We understand your time is valuable. That's why we've made our activation process lightning-fast, allowing you to connect and start using our services in mere minutes.",
-      },
-      {
         title: "Secure Connection",
         icon: Lock,
         brief: ["Your Data is Safe", "with Us"],
@@ -36,19 +29,28 @@ export function WHyChooseUs() {
           "Your privacy is our top priority. We employ state-of-the-art encryption to ensure that your data remains protected at all times, giving you peace of mind while you browse.",
       },
       {
+        title: "No Throttling",
+        icon: Infinity,
+        brief: ["Unlimited Speed", "Consistent Performance"],
+        detail:
+          "Experience our service with no speed limits. Our no-throttling policy ensures consistent high-speed performance and boosts productivity.",
+      },
+      {
+        title: "Global Coverage",
+        icon: Globe,
+        brief: ["Connect Anywhere", "Across the World"],
+        detail:
+          "Stay connected wherever life takes you. Our extensive global network ensures you have reliable service across the world, keeping you in touch with what matters most.",
+      },
+
+      {
         title: "24/7 Support",
         icon: Clock,
         brief: ["Assistance Anytime", "Anywhere"],
         detail:
           "We're always here for you. Our dedicated support team is available round the clock to assist with any questions or issues you might have, ensuring you're never left in the dark.",
       },
-      {
-        title: "Easy Setup",
-        icon: Smartphone,
-        brief: ["Quick and Simple", "Installation"],
-        detail:
-          "Getting started with our service is a breeze. We've streamlined our setup process so you can be up and running in no time, without any technical hassles.",
-      },
+
       {
         title: "Affordable Rates",
         icon: Wallet,
@@ -57,11 +59,11 @@ export function WHyChooseUs() {
           "We believe in providing top-notch service without breaking the bank. Our competitive rates ensure you get the best value for your money, with no hidden fees or surprises.",
       },
       {
-        title: "Global Coverage",
-        icon: Globe,
-        brief: ["Connect Anywhere", "Across the World"],
+        title: "Instant Activation",
+        icon: Zap,
+        brief: ["Stay Connected", "Go with ease"],
         detail:
-          "Stay connected wherever life takes you. Our extensive global network ensures you have reliable service across the world, keeping you in touch with what matters most.",
+          "We understand your time is valuable. That's why we've made our activation process lightning-fast, allowing you to connect and start using our services in mere minutes.",
       },
     ],
     []
@@ -117,9 +119,9 @@ function FeatureCard({
         onMouseLeave={() => setShow(false)}
         className=" relative flex flex-col items-center gap-2 border border-gray-300 shadow-sm py-6 rounded-lg"
       >
-        <Icon className="w-14 h-14 text-text-primary stroke-[0.8]" />
-        <p className="text-2xl font-medium">{title}</p>
-        <p className="text-center text-gray-800">
+        <Icon className="w-12 h-12 text-text-primary stroke-[0.8]" />
+        <p className="text-xl font-medium">{title}</p>
+        <p className="text-center text-sm text-gray-800">
           {brief[0]} <br /> {brief[1]}
         </p>
         <motion.p
@@ -128,7 +130,7 @@ function FeatureCard({
             show && "p-4"
           )}
           initial={{ height: 0 }}
-          animate={{ height: show ? "75%" : 0 }}
+          animate={{ height: show ? "80%" : 0 }}
         >
           {detail}
         </motion.p>
